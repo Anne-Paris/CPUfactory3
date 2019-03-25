@@ -1,0 +1,29 @@
+A Simple Oscillator
+###################
+
+To test the code in this factory, we will set up a
+simple oscillator made up using three inverter
+components. The circuit looks lik this:
+
+..  circuits::
+    :width; 500
+    :align: center
+    :tikzlibs: arrows, shapes.gates.logic.US, calc
+    
+    \coordinate (x) at (0, 0); 
+    \node (out) at (6.5,0) {}; 
+    \coordinate (j2) at (0,1);
+
+    \node[not gate US, draw] at (1,0) (inv1) {inv1}; 
+    \node[not gate US, draw] at (2.5,0) (inv2) {inv2}; 
+    \node[not gate US, draw] at (4,0) (inv3) {inv3};
+    \node[branch, draw] at (5.5,0) (j1) {};
+    \draw (x) -- (inv1.input); 
+    \draw (inv1.output) -- (inv2.input); 
+    \draw (inv2.output) -- (inv3.input); 
+    \draw (inv3.output) -- (j1);
+    \draw (j1) -- (out);
+    \draw (j1) |- (j2);
+    \draw (j2) -- (x);
+
+

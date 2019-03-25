@@ -1,0 +1,23 @@
+Building the Machine
+####################
+
+We start off by setting up a class that will manage the construction of our
+machine. This class has a simple interface:
+
+.. literalinclude:: ../../include/Machine.h
+   :linenos:
+   :caption: include/Machine.h
+
+All parts we build for our simulator will be named, so we can display thta name
+on output. The constructor for a part will provide a parameter where that name
+can be set. All classes will also provide a simple methood that can be used to
+set the name after the objects are created. 
+
+We can test that the constructor in this class works by checking that the name
+is properly set.
+
+.. literalinclude::  ../../tests/test_machine.cpp
+   :linenos:
+   :caption: tests/test_machine.cpp
+
+

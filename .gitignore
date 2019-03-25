@@ -1,0 +1,18 @@
+# Vim
+*~
+*.swp
+
+# C/C++
+*.o
+*.d
+testapp
+CPUfactory3
+
+# Python
+__pycache__
+_venv
+*.py[cod]
+_build
+
+# Mac
+.DS_Store

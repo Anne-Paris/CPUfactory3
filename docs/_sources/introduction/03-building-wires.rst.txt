@@ -1,0 +1,18 @@
+Building Wires
+##############
+
+A wire is a simple gadget. It accepts signals on one end, and delivers those signals to one or more components simultaneously. The wires are where the real action inside the machine happens. We control the timing of all of this signal movement elsewhere in the machine. The wire just delivers the data as needed.
+
+In our simple simulator, we will set up a ``tock`` method that causes the wire to do the job needed. For now, we will build a basic class and test case for the wires:
+
+..  literalinclude::    ../../include/Wire.h
+    :linenos:
+    :caption: include/Wire.h
+
+And the initial test case:
+
+..  literalinclude::    ../../tests/test_wire.cpp
+    :linenos:
+    :caption: tests/test_wire.cpp
+
+

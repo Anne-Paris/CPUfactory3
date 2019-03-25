@@ -1,0 +1,16 @@
+Inverters
+#########
+
+For our first real part, let's create a simple inverter. This part has only one input, and one output. THe processing simply compliments whatever is on the inut, and places the result on the output.
+
+..  literalinclude::    ../../include/Inverter.h
+    :linenos:
+    :caption: include/Inverter.h
+
+Again, we test this class using the constructor and ``get_name`` method:
+
+.. literalinclude::    ../../lib/parts/Inverter.cpp
+   :linenos:
+   :caption: lib/parts/Inverter.cpp
+
+

@@ -1,0 +1,22 @@
+Components
+##########
+
+The real digital magic in the machine happens in a variety of very simple
+parts. Each part has a set of input signals, and a set of output signal
+connections. We will provide a ``tick`` method that reads the inputs, performs
+some processing, then delivers the results to the appropriate outpit points.
+
+..  literalinclude::    ../../include/Component.h
+    :linenos:
+    :caption: include/Component.h
+
+And the initial test case:
+
+..  literalinclude::    ../../tests/test_component.cpp
+    :linenos:
+    :caption: tests/test_component.cpp
+
+The Component class is not used directly in our simulator. Instread, it os a
+base class from which all uniwue parts are derived. The component provided the
+basic structure of a part. Only the ``tick`` method needs to be customized in
+the actual part classes.
