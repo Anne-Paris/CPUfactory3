@@ -1,7 +1,7 @@
 # source files
-AVRCSRCS	:= $(wildcard avr/$(AVRPROJ)/*.c)
-AVRCXXSRCS	:= $(wildcard avr/$(AVRPROJ)/*.cpp)
-AVRSSRCS	:= $(wildcard avr/$(AVRPROJ)/*.S)
+AVRCSRCS	:= $(shell python $(MK)/pyfind.py avr/$(AVRPROJ) .c)
+AVRCXXSRCS	:= $(shell python $(MK)/pyfind.py avr/$(AVRPROJ) .cpp)
+AVRSSRCS	:= $(shell python $(MK)/pyfind.py avr/$(AVRPROJ) .S)
 
 # required object files
 AVRCOBJS	:= $(AVRCSRCS:.c=.obj)

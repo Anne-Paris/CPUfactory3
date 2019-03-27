@@ -16,3 +16,8 @@ _build
 
 # Mac
 .DS_Store
+
+# AVR
+*.hex
+*.obj
+*.lst
