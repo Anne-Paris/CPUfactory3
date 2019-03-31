@@ -11,6 +11,7 @@ class Fetch : public Component {
  public:
     explicit Fetch(std::string name);
     void build(void);
+    void tick(void);
 
  private:
     std::string name;

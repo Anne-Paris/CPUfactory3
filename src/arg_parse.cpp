@@ -1,6 +1,6 @@
 // Copyright 2019 Roie R. Black
 #include <iostream>
-#include "arg_parse.h"
+#include "arg-parse.h"
 
 void usage() {
     std::cout << "Usage: "

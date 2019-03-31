@@ -2,14 +2,10 @@
 #include <stdio.h>
 #include <string>
 #include <cstdint>
-#include "Graphics.h"
-#include "hexdisplay.h"
-#include "mouse.h"
-#include "machine.h"
-#include "LEDmatrix.h"
-#include "Button.h"
-#include "gui.h"
+#include "sim-graphics.h"
 
+ArrowButton arrow_button1;
+ArrowButton arrow_button2;
 Button stopButton;
 bool toggle = true;
 int digit = 0;
@@ -17,9 +13,6 @@ int delta_count = 1;
 int64_t frames = 0;
 const int FRAME_RATE = 80;
 const float DELAY = 1000.0 / FRAME_RATE;
-bool debug = false;
-bool enablegui = false;
-int simsteps = 0;
 
 void showTime(void) {
     int time = frames;
@@ -28,32 +21,55 @@ void showTime(void) {
     showString(60, 200, msg);
 }
 
-void animate(int t) {
+void animate(int t) {   // t is unused here
     frames++;
     int stage = ((frames / (FRAME_RATE / 4)) % 4);
     animate_stages(stage);
 
     if ((frames % FRAME_RATE) == 0) {
-        digit = (digit + delta_count) % 256;
-        if (digit < 0) digit = 255;
+        digit = (digit + delta_count) % 65536;
+        if (digit < 0) digit = 65535;
     }
     if ((frames % (FRAME_RATE / 8)) == 0) {
         animate_bar();
     }
-    animate_hex(digit);
+    animate_hex(frames);
     glutPostRedisplay();
     glutTimerFunc(DELAY, animate, 0);
 }
 
 void drawScene(void) {
     clearWindow();
-    machineGrid(40, 0);
+    // ------------------------------------------------
+    //
+    // display stage indicator
+    machineGrid(40, 300);
     showTime();
+
+    // show sim time
     showMouse(mousex, mousey);
-    LEDmatrix(200, 0);
+
+    // display hex matrix with animation
+    LEDmatrix(20, 100);
+
+    // hex display tracks machine cycles
     hex_display(40, 80);
+
+    // arrow buttons to control sim speed
+    arrow_button1.set_size(50);
+    arrow_button1.set_pos(500,100);
+    arrow_button1.set_direction("up");
+    arrow_button1.draw();
+    arrow_button2.set_size(50);
+    arrow_button2.set_pos(500,50);
+    arrow_button2.set_direction("down");
+    arrow_button2.draw();
+
+    // mouse control to stop simulation
     stopButton.set_pos(220, 180);
     stopButton.draw();
+
+    //-----------------------------------------------------
     glEnd();
     glFlush();
     glutSwapBuffers();

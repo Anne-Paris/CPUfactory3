@@ -1,23 +1,15 @@
 // Copyright 2019 Roie R. Black
-#include <math.h>
-#include <GL/glut.h>
-#include "Graphics.h"
-#include "LED.h"
-#include "SevenSeg.h"
-#include "LEDbar.h"
-#include "Button.h"
-#include "mouse.h"
-#include "LEDmatrix.h"
-#include "machine.h"
-#include "hexdisplay.h"
-#include "keyboard.h"
-#include "arg_parse.h"
-#include "gui.h"
 #include "version.h"
+#include "arg-parse.h"
+#include "sim-graphics.h"
+#include "AVRsim.h"
 
-extern bool debug;
-extern bool enablegui;
-extern int simsteps;
+bool debug = false;
+bool enablegui = false;
+int simsteps = 0;
+
+// create the master machine (debugging on)
+AVRsim avrsim("avr-sim");
 
 int main(int argc, char * argv[]) {
     const int FRAME_RATE = 80;
@@ -26,12 +18,16 @@ int main(int argc, char * argv[]) {
     arg_parse(argc, argv);
     if (debug)
         std::cout << "(debugging enabled)" << std::endl;
+    
     if (enablegui) {
+        avrsim.run(true);
         graphicsSetup(argc, argv);
         glutDisplayFunc(drawScene);
         glutKeyboardFunc(handleKey);    // set up the "q" key to quit
         glutMouseFunc(mouse);
         glutTimerFunc(DELAY, animate, 0);
         glutMainLoop();
+    } else {
+        avrsim.run(false);
     }
 }
