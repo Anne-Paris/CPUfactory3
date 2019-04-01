@@ -50,10 +50,10 @@ void drawScene(void) {
     showMouse(mousex, mousey);
 
     // display hex matrix with animation
-    LEDmatrix(20, 100);
+    LEDmatrix(250, 300);
 
     // hex display tracks machine cycles
-    hex_display(40, 80);
+    hex_display(40, 40);
 
     // arrow buttons to control sim speed
     arrow_button1.set_size(50);
