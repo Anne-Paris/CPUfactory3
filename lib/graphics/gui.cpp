@@ -6,6 +6,8 @@
 
 ArrowButton arrow_button1;
 ArrowButton arrow_button2;
+TextBox text_box;
+
 Button stopButton;
 bool toggle = true;
 int digit = 0;
@@ -64,6 +66,9 @@ void drawScene(void) {
     arrow_button2.set_pos(500,50);
     arrow_button2.set_direction("down");
     arrow_button2.draw();
+
+    text_box.set_pos( 400,100);
+    text_box.draw();
 
     // mouse control to stop simulation
     stopButton.set_pos(220, 180);

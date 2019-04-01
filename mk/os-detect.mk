@@ -28,3 +28,8 @@ endif
 -include $(MK)/help.mk
 -include $(MK)/debug.mk
 
+# avr projects
+-include $(MK)/avr-files.mk
+-include $(MK)/avr-tools.mk
+-include $(MK)/avr-utils.mk
+-include $(MK)/avr-build.mk
