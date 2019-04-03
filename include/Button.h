@@ -20,7 +20,7 @@ class Button {
     Button();
     void set_size(int s);
     void set_pos(int x, int y);
-    void toggle(int x, int y);
+    bool toggle(int x, int y);
     void set_on_color(ColorName color);
     void set_off_color(ColorName color);
     void set_on(void);

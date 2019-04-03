@@ -21,7 +21,7 @@ void mouse(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON) {
         if (state == GLUT_UP) {
             // check all buttons to see if any need attention
-            stopButton.toggle(x, y);
+            if (stop_button.toggle(x, y)) exit(0);
             arrow_button1.toggle(x, y);
             arrow_button2.toggle(x, y);
             delta_count = -delta_count;

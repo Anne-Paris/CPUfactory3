@@ -4,7 +4,7 @@
 #include "Button.h"
 #include "ArrowButton.h"
 extern int mousex, mousey;
-extern Button stopButton;
+extern Button stop_button;
 extern ArrowButton arrow_button1;
 extern ArrowButton arrow_button2;
 extern int64_t frames;

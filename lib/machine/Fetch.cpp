@@ -1,6 +1,5 @@
 // Copyright 2019 Roie R. Black
 #include <iostream>
-#include "Component.h"
 #include "Fetch.h"
 #include "MUX2.h"
 #include "Wire.h"

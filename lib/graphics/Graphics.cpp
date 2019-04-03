@@ -117,16 +117,6 @@ void drawFilledCircle(int x, int y, int radius) {
      glEnd();
 }
 
-void drawLED(int x, int y, int radius, ColorName color) {
-    setColor(color);
-    drawCircle(x, y, radius);
-}
-
-void drawFilledLED(int x, int y, int radius, ColorName color) {
-    setColor(color);
-    drawFilledCircle(x, y, radius);
-}
-
 void showString(int x, int y, std::string msg) {
     glColor3f(0., 0.0, 0.0);
     glRasterPos2i(x, y);

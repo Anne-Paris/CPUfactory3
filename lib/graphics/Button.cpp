@@ -43,7 +43,7 @@ void Button::set_pos(int lx, int ly) {
         y = ly;
 }
 
-void Button::toggle(int mousex, int mousey) {
+bool Button::toggle(int mousex, int mousey) {
     std::cout
         << "mouse x: "
         << mousex
@@ -58,11 +58,12 @@ void Button::toggle(int mousex, int mousey) {
         << size
         << std::endl;
     if (
-            (mousex >= x - size && mousex <= x + size)
-         && (mousey >= y -size && mousey <= y +  size))
+            (mousex >= x - size && mousex <= x + size/2)
+         && (mousey >= y -size && mousey <= y +  size/2))
 
              state = !state;
     std::cout << state << std::endl;
+    return state;
 }
 
 void Button:: set_state(bool s) {

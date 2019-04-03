@@ -1,19 +1,22 @@
 // Copyright 2019 Roie R. Black
 #include "Graphics.h"
+#include "StageBar.h"
 #include "LED.h"
 
-// implements a four step animation, showing the CPU stages
-LED ledF;   // fetch
-LED ledD;   // decode
-LED ledE;   // execute
-LED ledS;   // store
+StageBar::StageBar() {
+    width = 160;
+    height = 40;
+    x = 40;
+    y = 40;
+    bg_color = GREEN;
+    led_on_color = RED;
+    led_off_color = GREEN;
+}
 
-const int width = 160;
-const int height = 40;
-const int spacing = width / 8;
 
-void machineGrid(int x, int y) {
-    setColor(GREEN);
+void StageBar::draw(void) {
+    const int spacing = width / 8;
+    setColor(bg_color);
     drawFilledBox(x, y, x + width, y + height);
     ledF.set_pos(x + spacing, y + height/2);
     ledF.set_label("F");
@@ -31,14 +34,14 @@ void machineGrid(int x, int y) {
     drawBox(x, y, x + width, y + height);
 }
 
-void clear_stages(void) {
+void StageBar::clear_stages(void) {
     ledF.set_state(false);
     ledD.set_state(false);
     ledE.set_state(false);
     ledS.set_state(false);
 }
 
-void animate_stages(int stage) {
+void StageBar::set_stage(int stage) {
     clear_stages();
     switch (stage) {
         case 0:
@@ -56,4 +59,9 @@ void animate_stages(int stage) {
             default:
             clear_stages();
     }
+}
+
+void StageBar::set_pos(int lx, int ly) {
+    x = lx;
+    y = ly;
 }

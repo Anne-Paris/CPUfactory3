@@ -8,7 +8,7 @@ bool debug = false;
 bool enablegui = false;
 int simsteps = 0;
 
-// create the master machine (debugging on)
+// create the master machine
 AVRsim avrsim("avr-sim");
 
 int main(int argc, char * argv[]) {
@@ -16,11 +16,15 @@ int main(int argc, char * argv[]) {
     const float DELAY = 1000.0 / FRAME_RATE;
     std::cout << "avrsim (v" << VERSION << ")" << std::endl;
     arg_parse(argc, argv);
-    if (debug)
-        std::cout << "(debugging enabled)" << std::endl;
-    
+    if (debug) {
+        std::cout << "\tdebugging enabled" << std::endl;
+        avrsim.set_debug();
+    }
+    if (simsteps > 0) {
+        std::cout << "\trunning for " << simsteps << " steps" << std::endl;
+        avrsim.set_steps(simsteps);
+    }
     if (enablegui) {
-        avrsim.run(true);
         graphicsSetup(argc, argv);
         glutDisplayFunc(drawScene);
         glutKeyboardFunc(handleKey);    // set up the "q" key to quit
@@ -28,6 +32,7 @@ int main(int argc, char * argv[]) {
         glutTimerFunc(DELAY, animate, 0);
         glutMainLoop();
     } else {
-        avrsim.run(false);
+        avrsim.set_steps(simsteps);
+        avrsim.run();
     }
 }

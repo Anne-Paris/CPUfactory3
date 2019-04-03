@@ -1,11 +1,11 @@
-CPUfactory (v3.0.23)
-####################
+CPUfactory (v3.0.113)
+#####################
 :Course: COC2325 - Computer Architecture and Machine Language
 :School: Austin Community College
 :Email: rblack@austincc.edu
 :Documentation: http://rblack42.github.io/CPUfactory3
 
-|travis-build| |license|
+|travis-build| |license| |quality|
 
 This project builds a modular CPU factory, used to construct simulations of
 digital systems. The factory can build simple circuits all the way up to a full
@@ -48,8 +48,7 @@ Dependencies
     :alt: BSD 3-Clause License
 
 
-
-
+..  |quality|  image:: https://api.codacy.com/project/badge/Grade/07f811e8d0d14693b766887520b53a69    :target: https://www.codacy.com/app/rblack42/CPUfactory3?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rblack42/CPUfactory3&amp;utm_campaign=Badge_Grade
 
 
 

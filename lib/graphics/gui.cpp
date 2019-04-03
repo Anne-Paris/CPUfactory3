@@ -6,9 +6,13 @@
 
 ArrowButton arrow_button1;
 ArrowButton arrow_button2;
-TextBox text_box;
+StageBar stage_bar;
+HexBar hex_bar;
+LEDmatrix led_matrix;
+TextBox text_box1;
+TextBox text_box2;
+Button stop_button;
 
-Button stopButton;
 bool toggle = true;
 int digit = 0;
 int delta_count = 1;
@@ -26,16 +30,20 @@ void showTime(void) {
 void animate(int t) {   // t is unused here
     frames++;
     int stage = ((frames / (FRAME_RATE / 4)) % 4);
-    animate_stages(stage);
+    stage_bar.set_stage(stage);
 
     if ((frames % FRAME_RATE) == 0) {
         digit = (digit + delta_count) % 65536;
         if (digit < 0) digit = 65535;
     }
-    if ((frames % (FRAME_RATE / 8)) == 0) {
-        animate_bar();
-    }
-    animate_hex(frames);
+    hex_bar.set_value(frames);
+    if ((frames % (FRAME_RATE / 8)) ==0) 
+        led_matrix.update();
+    
+    std::string msg = "Frames: 0000";
+    std::snprintf(&msg[8], 4, "%4d", frames);
+    text_box2.set_text(msg);
+
     glutPostRedisplay();
     glutTimerFunc(DELAY, animate, 0);
 }
@@ -45,17 +53,20 @@ void drawScene(void) {
     // ------------------------------------------------
     //
     // display stage indicator
-    machineGrid(40, 300);
+    stage_bar.set_pos(40, 300);
     showTime();
 
-    // show sim time
+    // show mouse position
     showMouse(mousex, mousey);
 
     // display hex matrix with animation
-    LEDmatrix(250, 300);
+
+    led_matrix.set_pos(200, 300);
+    led_matrix.draw();
 
     // hex display tracks machine cycles
-    hex_display(40, 40);
+    hex_bar.set_pos(40, 80);
+    hex_bar.draw();
 
     // arrow buttons to control sim speed
     arrow_button1.set_size(50);
@@ -67,13 +78,17 @@ void drawScene(void) {
     arrow_button2.set_direction("down");
     arrow_button2.draw();
 
-    text_box.set_pos( 400,100);
-    text_box.draw();
-
     // mouse control to stop simulation
-    stopButton.set_pos(220, 180);
-    stopButton.draw();
+    stop_button.set_pos(220, 200);
+    stop_button.draw();
 
+    text_box1.set_pos(600, 100);
+    text_box1.draw();
+    text_box2.set_pos(600, 120);
+    text_box2.draw();
+
+    // show stage bar
+    stage_bar.draw();
     //-----------------------------------------------------
     glEnd();
     glFlush();

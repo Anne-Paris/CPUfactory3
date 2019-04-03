@@ -18,12 +18,15 @@ class AVRsim {
     uint16_t get_pcnext(void);
 
     // mutators
-    void run(bool guienabled);
+    void run(void);
+    void set_steps(int nsteps);
+    void set_debug(void);
     void tick(void);
 
  private:
     std::string name;
     bool debug;
+    int steps;
     void build(void);
 };
 
